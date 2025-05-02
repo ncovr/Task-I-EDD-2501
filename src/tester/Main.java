@@ -15,6 +15,7 @@ public class Main {
                 9, 6,
                 6, 5,
                 5, 7
+
         };
         GrafoNoDirigido g = new GrafoNoDirigido(10, relaciones);
 
