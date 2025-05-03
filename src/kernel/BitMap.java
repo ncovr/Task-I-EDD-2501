@@ -6,10 +6,12 @@ package kernel;
 
 public class BitMap {
     private int[] b;
+    private int size;
 
     public BitMap(int size) {
         if (size >= 0) {
             b = new int[(int) Math.ceil(size / 32.0)];
+            this.size = size;
         }
     }
 
@@ -19,10 +21,11 @@ public class BitMap {
      * Enciende el bit de la posición i del kernel.BitMap
      */
     public void On(int i) {
+        if(i < 0 || i >= size) return;
         int index = i / 32; // Posición del bit en el BitMap
         int temp = b[index]; // int a operar
         i = i % 32;
-        int m = 0x00000001 << i; // Máscara
+        int m = 0x80000000 >> i; // Máscara
         b[index] = temp | m;
     }
 
@@ -30,10 +33,11 @@ public class BitMap {
      * Apaga el bit de la posición i del kernel.BitMap
      */
     public void Off(int i) {
+        if(i < 0 || i >= size) return;
         int index = i / 32; // Posición del bit en el BitMap
         int temp = b[index]; // int a operar
         i = i % 32;
-        int m = 0x00000001 << i; // Máscara
+        int m = 0x80000000 >> i; // Máscara
         b[index] = temp & ~m;
     }
 
@@ -41,10 +45,11 @@ public class BitMap {
      * Retorna el valor de la posición i
      */
     public byte Access(int i) {
+        if(i < 0 || i >= size) return -1;
         int index = i / 32;
         int temp = b[index];
         i %= 32;
-        int m = 0x00000001 << i;
+        int m = 0x80000000 >> i;
 
         if ((temp & m) == 0) return 0;
         return 1;
@@ -73,7 +78,7 @@ public class BitMap {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < b.length; i++) { // Recorre el BitMap
             int m = 0x80000000;
-            for (int j = 0; j < 32; j++) { // Recorre cada bit del int
+            for (int j = 0; j < size; j++) { // Recorre cada bit del int
                 if (j % 4 == 0) s.append(" ");
                 if ((b[i] & m) == 0) s.append("0");
                 else s.append("1");

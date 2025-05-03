@@ -5,7 +5,29 @@ import kernel.GrafoNoDirigido;
 
 public class Main {
     public static void main(String[] args)  {
-        int[] relaciones = {
+        BitMap b = new BitMap(8);
+        b.On(0);
+        System.out.println(b);
+        b.On(1);
+        System.out.println(b);
+        b.On(2);
+        System.out.println(b);
+        b.On(3);
+        System.out.println(b);
+        b.On(4);
+        System.out.println(b);
+        b.On(5);
+        System.out.println(b);
+        b.On(6);
+        System.out.println(b);
+        b.On(7);
+        System.out.println(b);
+        b.On(8);
+        System.out.println(b);
+
+
+
+        /*int[] relaciones = {
                 1, 2,
                 2, 4,
                 4, 10,
@@ -32,6 +54,6 @@ public class Main {
         System.out.println("5. "+g.esunCamino(new int[]{1, 2, 4, 10, 3, 1, 2}));
         System.out.println("6. "+g.esunCamino(new int[]{}));         // vacío
         System.out.println("7. "+g.esunCamino(new int[]{5}));        // solo un nodo
-        System.out.println("8. "+g.esunCamino(new int[]{8, 6}));
+        System.out.println("8. "+g.esunCamino(new int[]{8, 6}));*/
     }
 }
