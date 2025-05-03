@@ -7,17 +7,18 @@ public class GrafoNoDirigido {
     public GrafoNoDirigido(int n, int[] relaciones) {
         g = new BitMap[n + 1];
         size = n;
+        for (int i = 0; i <= size; i++) {
+            if (g[i] == null) g[i] = new BitMap(size+1);
+        }
         for (int i = 0; i < relaciones.length - 1; i += 2) {
             int a = relaciones[i];
             int b = relaciones[i + 1];
             if (a <= 0 || b <= 0 || a == b || a > n || b > n) continue;
-            relacionar(a, b, size);
+            relacionar(a, b);
         }
     }
 
-    private void relacionar(int a, int b, int n) {
-        if (g[a] == null) g[a] = new BitMap(n);
-        if (g[b] == null) g[b] = new BitMap(n);
+    private void relacionar(int a, int b) {
         g[a].On(b);
         g[b].On(a);
     }

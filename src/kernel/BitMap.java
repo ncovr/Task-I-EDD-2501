@@ -6,7 +6,7 @@ package kernel;
 
 public class BitMap {
     private int[] b;
-    private int size;
+    int size;
 
     public BitMap(int size) {
         if (size >= 0) {
@@ -25,7 +25,7 @@ public class BitMap {
         int index = i / 32; // Posición del bit en el BitMap
         int temp = b[index]; // int a operar
         i = i % 32;
-        int m = 0x80000000 >> i; // Máscara
+        int m = 0x80000000 >>> i;
         b[index] = temp | m;
     }
 
@@ -37,7 +37,7 @@ public class BitMap {
         int index = i / 32; // Posición del bit en el BitMap
         int temp = b[index]; // int a operar
         i = i % 32;
-        int m = 0x80000000 >> i; // Máscara
+        int m = 0x80000000 >>> i;
         b[index] = temp & ~m;
     }
 
@@ -49,7 +49,7 @@ public class BitMap {
         int index = i / 32;
         int temp = b[index];
         i %= 32;
-        int m = 0x80000000 >> i;
+        int m = 0x80000000 >>> i;
 
         if ((temp & m) == 0) return 0;
         return 1;
@@ -71,22 +71,21 @@ public class BitMap {
     }
 
     // Métodos extras --------------------------------------------------------------------------------------------------
-
-    // en el for esta seteado en 8 para ver solo 8 bits. pero deberian ser 32
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        for (int i = 0; i < b.length; i++) { // Recorre el BitMap
-            int m = 0x80000000;
-            for (int j = 0; j < size; j++) { // Recorre cada bit del int
-                if (j % 4 == 0) s.append(" ");
+
+        for (int i = 0; i < b.length; i++) {
+            int m = 0x80000000; int j = 0;
+            do {
+                if (j != 0 && j % 4 == 0) s.append(" ");
                 if ((b[i] & m) == 0) s.append("0");
                 else s.append("1");
                 m >>>= 1;
-            }
+                j++;
+            } while (j < size);
             if (b.length > 1) s.append("\n");
         }
         return s.toString();
     }
-
 }
