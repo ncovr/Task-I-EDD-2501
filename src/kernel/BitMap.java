@@ -58,17 +58,36 @@ public class BitMap {
     /**
      * Retorna la cantidad de bits encendidos desde la posición 0 hasta i
      */
-    int Rank(int i) {
-        return -1;
+    public int Rank(int in) {
+        if (in < 0 || in >= size) return -1;
+        int c = 0;
+        for (int i = 0; i <= in; i++) {
+            if (Access(i) == 1) c++;
+        }
+        return c;
     }
 
+
     /**
-     * Retorna la posición hasta donde existen j bits en 1. Si la cantidad de bits en 1 es menor que j, se retorna -1
-     */
-    int Select(int j) {
-        if (!(j >= 0 && j <= b.length)) return -1;
-        return -1;
+
+     Retorna la posición hasta donde existen j bits en 1. Si la cantidad de bits en 1 es menor que j, se retorna -1*/
+    public int Select(int j) {
+        if (j <= 0) {
+            return -1;
+        }
+
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            if (Access(i) == 1) {
+                count++;
+                if (count == j) {
+                    return i;
+                }
+            }
+        }
+        return -1; // No se encontró el j-ésimo 1
     }
+
 
     // Métodos extras --------------------------------------------------------------------------------------------------
     @Override
@@ -78,7 +97,7 @@ public class BitMap {
         for (int i = 0; i < b.length; i++) {
             int m = 0x80000000; int j = 0;
             do {
-                if (j != 0 && j % 4 == 0) s.append(" ");
+                //if (j != 0 && j % 4 == 0) s.append(" ");
                 if ((b[i] & m) == 0) s.append("0");
                 else s.append("1");
                 m >>>= 1;

@@ -1,10 +1,10 @@
 package kernel;
 
-public class GrafoNoDirigido {
+public class Grafo {
     BitMap[] g;
     int size;
 
-    public GrafoNoDirigido(int n, int[] relaciones) {
+    public Grafo(int n, int[] relaciones) {
         g = new BitMap[n + 1];
         size = n;
         for (int i = 0; i <= size; i++) {
