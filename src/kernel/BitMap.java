@@ -93,17 +93,19 @@ public class BitMap {
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
+        int c = 0; // cuenta la cantidad de bits integrados a la salida final
 
-        for (int i = 0; i < b.length; i++) {
-            int m = 0x80000000; int j = 0;
-            do {
-                //if (j != 0 && j % 4 == 0) s.append(" ");
+        for (int i = 0; i < b.length && c < size; i++) {
+            int m = 0x80000000;
+            for (int j = 0; j < 32 && c < size; j++) {
                 if ((b[i] & m) == 0) s.append("0");
                 else s.append("1");
                 m >>>= 1;
-                j++;
-            } while (j < size);
-            if (b.length > 1) s.append("\n");
+                c++;
+            }
+            if (b.length > 1 && i != b.length - 1) {
+                s.append("\n");
+            }
         }
         return s.toString();
     }

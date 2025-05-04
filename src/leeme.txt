@@ -1,0 +1,12 @@
+En este archivo se presenta la forma de operar el TDA BitMap y
+TDA Grafo (no dirigido y sin peso)
+
+***** BitMap *****
+A continuación, una lista de las funciones en main creadas para testear los métodos
+de la clase BitMap
+- Creación del bitmap: editar la variable int size (línea 9)
+- Encender bits: editar función "encenderBits"
+- Apagar bits: editar función "apagarBits"
+- Estado de un bit: editar función "valorDeLaPosicion"
+- Testear Rank: editar la función "rank"
+- Testear Select: editar la función "select"

@@ -42,7 +42,7 @@ public class Grafo {
         System.out.println("Vecinos de " + i + ": " + s);
     }
 
-    private int[] getVecinos(int i) {
+    public int[] getVecinos(int i) {
         if (g[i] == null) return null;
 
         int[] vecinos = new int[size + 1];
