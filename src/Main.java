@@ -1,5 +1,14 @@
+import java.util.Scanner;
+
+//Desarrollado por
+// - Nicolás Verdugo
+// - Diego Mercado
+// Con la participación de
+//  - ChatGPT, para crear casos de testeo y botar el programa
+
 public class Main {
     public static void main(String[] args)  {
+        Scanner in = new Scanner(System.in);
         // Testers
         boolean testBitMap = false;
         boolean testGrafo = false;
